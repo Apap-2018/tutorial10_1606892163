@@ -34,7 +34,7 @@ export class DaftarPasien extends React.Component {
             )
         } else {
             return (
-                <TableContainer title="Daftar Pasien" header={['Nama Pasien', 'Status Pasien', 'Aksi']}>
+                <TableContainer title="Daftar Pasien" header={['Nama Pasien', 'Status Pasien', 'Aksi', 'Billing']}>
                     <DaftarPasienRow listPasien={this.state.listPasien}/>
                 </TableContainer>
             )

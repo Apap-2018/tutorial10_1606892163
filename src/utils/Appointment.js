@@ -39,6 +39,21 @@ export const Appointment = {
 			return jsonResponse
 		})
 	},
+	addBillingPasien(requestBody) {
+		return fetch(`${cors}${baseUrl}/1/addBilling`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(requestBody)
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(jsonResponse => {
+			return jsonResponse
+		})
+	},
 	getAllDokter() {
 		return fetch(`${cors}${baseUrl}/1/getAllDokter`, {
 			method: 'GET',

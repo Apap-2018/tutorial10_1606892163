@@ -34,9 +34,41 @@ export class UpdatePasien extends React.Component {
 
 	handleFormSubmit(e) {
 		e.preventDefault()
-		/** 
-		 * TODO: Akses method updateStatusPasien(requestBody) pada Appointment dan lakukan update state. 
-		 */
+		this.setState({
+			loading: true
+		})
+
+		const data = new FormData(e.target)
+		const dataJson = {}
+
+		data.forEach((val, key) => {
+			if (val !== "") {
+				let name = key.split('.');
+				if (name.length > 1) {
+					let last = name.pop()
+					name.reduce((prev, next) => {
+						return prev[next] = prev[next] || {};
+					}, dataJson)[last] = val
+				} else {
+					dataJson[key] = val
+				}
+			}
+		})
+
+		Appointment.updateStatusPasien(dataJson).then(response => {
+			if (response.status === 200) {
+				this.setState({
+					loading: false,
+					pasien: response.result
+				})
+				alert(`Sukses update pasien ${this.state.pasien.nama}`)
+			} else {
+				this.setState({
+					loading: false
+				})
+				alert(`Gagal update pasien ${this.state.pasien.nama}`)
+			}
+		})
 	}
 
 	render() {

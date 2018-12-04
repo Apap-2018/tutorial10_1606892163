@@ -38,5 +38,16 @@ export const Appointment = {
 		.then(jsonResponse => {
 			return jsonResponse
 		})
+	},
+	getAllDokter() {
+		return fetch(`${cors}${baseUrl}/1/getAllDokter`, {
+			method: 'GET',
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(jsonResponse => {
+			return jsonResponse
+		})
 	}
 }

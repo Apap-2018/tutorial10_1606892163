@@ -1,6 +1,7 @@
 import React from 'react';
 import { Loading } from '../components/Loading';
 import { FormUpdatePasien } from '../containers/FormUpdatePasien';
+import { Appointment } from '../utils/Appointment';
 
 export class UpdatePasien extends React.Component {
 	/** 
@@ -15,6 +16,20 @@ export class UpdatePasien extends React.Component {
 			pasien: {},
 		}
 		this.handleFormSubmit = this.handleFormSubmit.bind(this)
+	}
+
+	componentDidMount() {
+		Appointment.getDetailPasien(this.props.match.params.id).then(response => {
+			if (response.status === 200) {
+				this.setState({
+					loading: false,
+					pasien: response.result
+				})
+			} else {
+				alert('Data tidak ditemukan')
+				this.props.history.push('/all-pasien')
+			}
+		})
 	}
 
 	handleFormSubmit(e) {

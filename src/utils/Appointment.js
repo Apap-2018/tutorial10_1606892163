@@ -19,6 +19,15 @@ export const Appointment = {
 		 * @param idPasien
 		 * @return detailPasien
 		 */
+		return fetch(`${cors}${baseUrl}/getPasien/${idPasien}`, {
+			method: 'GET',
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(jsonResponse => {
+			return jsonResponse
+		})
 	},
 	updateStatusPasien(requestBody) {
 		/** 
